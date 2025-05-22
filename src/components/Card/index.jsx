@@ -5,7 +5,7 @@ import { SiCplusplus, SiRuby, SiGo, SiPhp } from "react-icons/si";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-// icones
+// ícones por linguagem
 const languageIcons = {
   JavaScript: <FaJs />,
   HTML: <FaHtml5 />,
@@ -15,7 +15,6 @@ const languageIcons = {
   Ruby: <SiRuby />,
   Go: <SiGo />,
   PHP: <SiPhp />,
-  //  ícones
 };
 
 function Card({ name, description, html_url, repoName }) {
@@ -25,13 +24,7 @@ function Card({ name, description, html_url, repoName }) {
     const fetchLanguages = async () => {
       try {
         const res = await fetch(
-          `https://api.github.com/repos/IanLucca1/${repoName}/languages`,
-          {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-              Accept: "application/vnd.github.v3+json",
-            },
-          }
+          `https://api.github.com/repos/IanLucca1/${repoName}/languages`
         );
         if (!res.ok) throw new Error(res.statusText);
         const data = await res.json();
@@ -55,7 +48,7 @@ function Card({ name, description, html_url, repoName }) {
             </span>
           ))}
         </div>
-        <Link to={html_url} className={styles.botao}>
+        <Link to={html_url} className={styles.botao} target="_blank">
           <BsArrowRight />
         </Link>
       </div>

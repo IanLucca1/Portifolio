@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Card from '../../../components/Card';
-import styles from './Projetos.module.css';
+import React, { useEffect, useState } from "react";
+import Card from "../../../components/Card";
+import styles from "./Projetos.module.css";
 
 function Projetos() {
   const [repositories, setRepositories] = useState([]);
@@ -9,13 +9,7 @@ function Projetos() {
     const buscarRepositorios = async () => {
       try {
         const response = await fetch(
-          'https://api.github.com/users/IanLucca1/repos',
-          {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-              Accept: 'application/vnd.github.v3+json'
-            }
-          }
+          "https://api.github.com/users/IanLucca1/repos"
         );
         if (!response.ok) throw new Error(`GitHub API: ${response.status}`);
         const data = await response.json();
@@ -32,7 +26,7 @@ function Projetos() {
       <h2>Projetos</h2>
       {repositories.length > 0 ? (
         <section className={styles.lista}>
-          {repositories.map(repo => (
+          {repositories.map((repo) => (
             <Card
               key={repo.id}
               name={repo.name}
